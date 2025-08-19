@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./api
+    env_file: .env
+    depends_on:
+      - mongo
+      - redis
+    ports:
+      - "3000:3000"
+
+  worker:
+    build: ./worker
+    env_file: .env
+    depends_on:
+      - mongo
+      - redis
+
+  sink:
+    build: ./sink
+    env_file: .env
+    depends_on:
+      - redis
+    ports:
+      - "4000:4000"
+
+  admin:
+    build: ./admin
+    env_file: .env
+    depends_on:
+      - api
+    ports:
+      - "5173:5173"
+
+volumes:
+  mongo_data:

@@ -1,0 +1,26 @@
+{
+  "name": "droplater-worker",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "bullmq": "^4.0.0",
+    "dayjs": "^1.11.11",
+    "dotenv": "^16.4.5",
+    "ioredis": "^5.4.1",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.4.1",
+    "pino": "^9.0.0",
+    "pino-pretty": "^13.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "vitest": "^2.0.5"
+  }
+}
